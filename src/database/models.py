@@ -14,7 +14,6 @@ class Identity(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     is_active = Column(Boolean, default=True)
     
-    # Relationship with Attendance
     attendances = relationship("Attendance", back_populates="identity", cascade="all, delete-orphan")
     
     def __repr__(self):
@@ -28,9 +27,8 @@ class Attendance(Base):
     date = Column(Date, nullable=False)
     check_in = Column(DateTime, nullable=True)
     check_out = Column(DateTime, nullable=True)
-    status = Column(String, nullable=True)  # E.g., "Present", "Absent", "Late", etc.
+    status = Column(String, nullable=True)
     
-    # Relationship with Identity
     identity = relationship("Identity", back_populates="attendances")
     
     def __repr__(self):
