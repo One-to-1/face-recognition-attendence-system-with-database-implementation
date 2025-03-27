@@ -1,6 +1,6 @@
-"""
-Example script demonstrating the object-oriented approach with the SQL Database Attendance System
-"""
+# """
+# Example script demonstrating the object-oriented approach with the SQL Database Attendance System
+# """
 
 from src.api.easy_api import (
     setup_database,
@@ -20,7 +20,7 @@ def main():
     print("Setting up the database...")
     setup_database()
     
-    # 1. Define student objects first
+
     print("\n1. Creating students using StudentData class...")
     first_student = StudentData(
         name="Jane Doe",
