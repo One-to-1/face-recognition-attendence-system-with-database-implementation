@@ -1,1 +1,0 @@
-# face-recognition-attendence-system-with-database-implementation
