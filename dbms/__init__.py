@@ -1,4 +1,4 @@
-from src.database.connection import init_db
+from dbms.database.connection import init_db
 
 def initialize():
     """Initialize the database by creating all tables"""

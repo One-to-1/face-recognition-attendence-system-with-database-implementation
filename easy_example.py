@@ -2,7 +2,7 @@
 # Example script demonstrating the object-oriented approach with the SQL Database Attendance System
 # """
 
-from src.api.easy_api import (
+from dbms.api.easy_api import (
     setup_database,
     create_student,
     get_student,

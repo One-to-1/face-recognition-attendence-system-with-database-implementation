@@ -7,10 +7,10 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
 
 # Import the necessary modules
-from src.database.connection import init_db, get_db, Base, engine
-from src.database.models import Identity, Attendance
-from src.services.identity_service import IdentityService
-from src.services.attendance_service import AttendanceService
+from dbms.database.connection import init_db, get_db, Base, engine
+from dbms.database.models import Identity, Attendance
+from dbms.services.identity_service import IdentityService
+from dbms.services.attendance_service import AttendanceService
 
 class EmployeeData:
     """Class representing employee data for creating or retrieving identity records"""

@@ -15,10 +15,10 @@ from typing import List, Dict, Any, Optional, Union, Tuple
 # Add parent directory to path to import modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
-from src.database.connection import init_db, get_db, Base, engine
-from src.database.models import Identity, Attendance
-from src.services.identity_service import IdentityService
-from src.services.attendance_service import AttendanceService
+from dbms.database.connection import init_db, get_db, Base, engine
+from dbms.database.models import Identity, Attendance
+from dbms.services.identity_service import IdentityService
+from dbms.services.attendance_service import AttendanceService
 
 
 # Initialize the database if it doesn't exist
