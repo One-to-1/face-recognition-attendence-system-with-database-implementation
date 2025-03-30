@@ -36,7 +36,7 @@ class DatabaseManager:
             # Users table
             self.cursor.execute("""
                 CREATE TABLE IF NOT EXISTS users (
-                    id TEXT PRIMARY KEY,
+                    id TEXT PRIMARY KEY UNIQUE,
                     name TEXT NOT NULL
                 )
             """)
