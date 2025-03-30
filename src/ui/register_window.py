@@ -142,6 +142,12 @@ class RegisterWindow(QWidget):
         if not id_valid:
             QMessageBox.warning(self, "Invalid ID", id_msg)
             return
+        
+        # Check if student ID already exists in database
+        if self.db_manager.user_exists(id_):
+            QMessageBox.warning(self, "Duplicate ID", 
+                              f"Student ID {id_} is already registered. Please use a different ID.")
+            return
             
         # All inputs are valid, proceed to face capture
         self.capture_face(name, id_)

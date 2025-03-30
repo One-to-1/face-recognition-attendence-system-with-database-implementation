@@ -56,6 +56,23 @@ class DatabaseManager:
             print(f"❌ Error creating tables: {e}")
             raise
 
+    def user_exists(self, user_id):
+        """Check if a user ID already exists in the database.
+        
+        Args:
+            user_id: The user ID to check
+            
+        Returns:
+            bool: True if the user ID already exists, False otherwise
+        """
+        try:
+            self.cursor.execute("SELECT id FROM users WHERE id=?", (user_id,))
+            result = self.cursor.fetchone()
+            return result is not None
+        except sqlite3.Error as e:
+            print(f"❌ Error checking if user exists: {e}")
+            return False
+
     def register_user(self, user_id, name):
         """Register a new user or update existing user."""
         try:
@@ -111,19 +128,26 @@ class DatabaseManager:
     def get_attendance_records(self, date=None, user_id=None):
         """Get attendance records with optional filters."""
         try:
-            query = "SELECT id, name, date, time FROM attendance WHERE 1=1"
+            query = "SELECT id, name, date, time FROM attendance"
             params = []
             
-            if date:
-                query += " AND date=?"
-                params.append(date)
-            
-            if user_id:
-                query += " AND id=?"
-                params.append(user_id)
+            # Apply filters
+            if date and user_id:
+                query += " WHERE date=? AND id=?"
+                params = [date, user_id]
+            elif date:
+                query += " WHERE date=?"
+                params = [date]
+            elif user_id:
+                query += " WHERE id=?"
+                params = [user_id]
+                
+            # Add ordering
+            query += " ORDER BY date DESC, time DESC"
             
             self.cursor.execute(query, params)
             return self.cursor.fetchall()
+            
         except sqlite3.Error as e:
             print(f"❌ Error getting attendance records: {e}")
             return []
