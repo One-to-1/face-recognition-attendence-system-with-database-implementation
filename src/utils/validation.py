@@ -29,8 +29,8 @@ def validate_student_name(name):
     if not name:
         return False, "Name cannot be empty"
         
-    if len(name) < 2:
-        return False, "Name is too short"
+    if len(name) < 1:
+        return False, "Name cannot be empty"
         
     if len(name) > 50:
         return False, "Name is too long (max 50 characters)"
