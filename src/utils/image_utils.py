@@ -1,7 +1,6 @@
 """
 Image utility functions for Face Recognition Attendance System.
 """
-
 import cv2
 import numpy as np
 import os
