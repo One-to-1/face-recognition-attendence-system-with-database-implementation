@@ -55,3 +55,6 @@ Thumbs.db
 # Environments
 .env
 .venv
+
+# Privacy
+data/dataset/
