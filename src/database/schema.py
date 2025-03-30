@@ -10,7 +10,7 @@ The tables are created in the DatabaseManager class.
 # Users table schema
 USERS_TABLE = """
 CREATE TABLE IF NOT EXISTS users (
-    id TEXT PRIMARY KEY,
+    id TEXT PRIMARY KEY UNIQUE,
     name TEXT NOT NULL
 )
 """
