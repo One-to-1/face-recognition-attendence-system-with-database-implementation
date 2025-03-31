@@ -6,6 +6,13 @@ import sys
 import os
 from PyQt5.QtWidgets import QApplication
 import logging
+import codecs
+
+# Fix Windows console encoding issues - can handle Unicode characters including emojis
+if sys.platform == 'win32':
+    # Force UTF-8 encoding for stdout/stderr
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 # Configure logging
 logging.basicConfig(
@@ -13,7 +20,7 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler('app.log')
+        logging.FileHandler('app.log', encoding='utf-8')
     ]
 )
 logger = logging.getLogger(__name__)
