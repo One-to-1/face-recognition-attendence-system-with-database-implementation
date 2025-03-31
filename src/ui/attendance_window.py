@@ -11,6 +11,7 @@ from PyQt5.QtCore import QTimer, Qt, QSize
 from src.core.attendance import AttendanceProcessor
 from src.ui.style import MAIN_STYLE, TITLE_STYLE, CARD_STYLE, MAIN_BUTTON_STYLE
 from src.ui.icons import get_camera_icon
+from config.settings import CAMERA_INDEX
 
 class AttendanceWindow(QWidget):
     def __init__(self):
@@ -121,8 +122,8 @@ class AttendanceWindow(QWidget):
         self.processor = AttendanceProcessor()
         self.attendance_records = set()  # Keep track of logged attendance for display
         
-        # Start camera
-        self.cap = cv2.VideoCapture(0)
+        # Start camera with configured index
+        self.cap = cv2.VideoCapture(CAMERA_INDEX)
         if self.cap.isOpened():
             self.camera_status.setText("Camera active. Detecting faces...")
         else:

@@ -12,7 +12,7 @@ from PyQt5.QtGui import QPixmap
 
 from src.database.db_manager import DatabaseManager
 from src.core.model_training import ModelTrainer
-from config.settings import DATASET_DIR, FACE_SAMPLE_COUNT
+from config.settings import DATASET_DIR, FACE_SAMPLE_COUNT, CAMERA_INDEX
 from src.ui.style import MAIN_STYLE, TITLE_STYLE, CARD_STYLE, MAIN_BUTTON_STYLE
 from src.ui.icons import get_user_plus_icon, get_check_icon
 from src.utils.validation import validate_student_name, validate_student_id, sanitize_input
@@ -278,8 +278,8 @@ class RegisterWindow(QWidget):
             self.pose_label.setVisible(True)
             self.capture_btn.setEnabled(False)
             
-            # Initialize camera
-            cam = cv2.VideoCapture(0)
+            # Initialize camera with configured index
+            cam = cv2.VideoCapture(CAMERA_INDEX)
             face_detector = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
             # Create dataset directory if it doesn't exist

@@ -38,27 +38,27 @@ The application uses a consistent color palette throughout:
 ## Screen Flow Diagram
 
 ```txt
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│                 │     │                 │     │                 │
-│  Main Window    │────►│Register Window  │────►│ Camera Capture  │
-│                 │     │                 │     │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-        │                                               │
-        │                                               │
-        ▼                                               ▼
-┌─────────────────┐                            ┌─────────────────┐
-│                 │                            │                 │
-│Analytics Window │                            │Attendance Window│
-│                 │                            │                 │
-└─────────────────┘                            └─────────────────┘
-        │                                               │
-        │                                               │
-        ▼                                               ▼
-┌─────────────────┐                            ┌─────────────────┐
-│                 │                            │                 │
-│Export Reports   │                            │Recognition      │
-│                 │                            │Feedback         │
-└─────────────────┘                            └─────────────────┘
+┌─────────────────┐          
+│                 │          
+│  Main Window    │─────────────────────────────────────────────────────────────┐
+│                 │             │                        │                      │ 
+└─────────────────┘             │                        │                      │ 
+        │                       │                        │                      │
+        │                       │                        │                      │
+        ▼                       ▼                        ▼                      ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │     │                 │
+│Analytics Window │     │Database Window  │     │Register Window  │     │Attendance Window│
+│                 │     │                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
+        │                       │                        │                      │   
+        │                       │                        │                      │
+        ▼                       ▼                        ▼                      ▼  
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │     │                 │
+│Export Reports   │     │Student Editor   │     │ Camera Capture  │     │Recognition      │
+│                 │     │                 │     │                 │     │Feedback         │
+└─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
 ```
 
 ## Screen Specifications
@@ -70,10 +70,11 @@ The application uses a consistent color palette throughout:
 **Key Elements:**
 
 - Application title and logo
-- Three main action buttons with icons:
+- Four main action buttons with icons:
   - Register New Student
   - Take Attendance with Camera
   - View Attendance Reports
+  - Database Management
 - Footer with application information
 
 **Layout:**
@@ -169,6 +170,43 @@ The application uses a consistent color palette throughout:
 - Search/filter functionality for large datasets
 - Export options for different file formats
 
+### Database Management Window
+
+![Database Window Wireframe]
+
+**Key Elements:**
+
+- Search and filter controls
+- Student list with details:
+  - ID
+  - Name
+  - Enrollment Date
+  - Last Updated
+  - Status (Active/Inactive)
+- Action buttons for each student:
+  - Edit
+  - Activate/Deactivate
+  - Delete
+- Add New Student button
+- Status bar for operation feedback
+
+**Layout:**
+
+- Controls at the top (search, filter, buttons)
+- Scrollable table with student records taking majority of space
+- Action buttons embedded in table rows
+- Status bar at the bottom
+
+**Interactions:**
+
+- Real-time search filtering as user types
+- Status filtering through dropdown (All/Active/Inactive)
+- Edit button opens a dialog to modify student information
+- Activate/Deactivate button toggles student status with confirmation
+- Delete button removes student with double confirmation
+- Success/error feedback displayed in status bar
+- Add New Student button opens editor dialog for new entries
+
 ## UI Components & Styling
 
 ### Buttons
@@ -256,9 +294,11 @@ The application uses a consistent icon set for better visual communication:
 - **User Plus Icon**: For registration functionality
 - **Camera Icon**: For attendance capture
 - **Chart Icon**: For analytics and reports
+- **Database Icon**: For database management
 - **Check Icon**: For confirmation/success feedback
 - **X Icon**: For errors/cancellation
 - **Export Icon**: For report export functionality
+- **Save Icon**: For saving changes
 
 Icons are stored in the `src/ui/icons/` directory and loaded via the `icons.py` utility module.
 
@@ -328,3 +368,15 @@ The UI is designed to be responsive within these constraints:
 4. Choose date range
 5. View generated report
 6. (Optional) Export report to file
+
+### Database Management Flow
+
+1. Open main window
+2. Click "Database Management"
+3. Search or filter student records as needed
+4. Perform desired database operations:
+   - Edit student information by clicking the Edit button
+   - Activate/deactivate students by clicking the status toggle button
+   - Delete students by clicking the Delete button (requires confirmation)
+   - Add new students by clicking "Add New Student"
+5. System provides feedback for each operation in the status bar

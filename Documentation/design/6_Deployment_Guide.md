@@ -86,6 +86,13 @@ EMBEDDINGS_PATH = os.path.join(MODELS_DIR, 'face_embeddings.pkl')
 STRANGER_THRESHOLD = 0.5
 ```
 
+#### Camera Settings
+
+```python
+# Camera index for video capture (0 typically refers to the built-in webcam)
+CAMERA_INDEX = 0
+```
+
 #### Image Capture Settings
 
 ```python
@@ -220,7 +227,10 @@ python app.py --init-db
 
 - **Problem**: Camera not detected
   - **Solution**: Ensure the camera is properly connected and not in use by another application
-  - **Solution**: Try changing the camera index in the code if you have multiple cameras
+  - **Solution**: Try changing the CAMERA_INDEX value in config/settings.py if you have multiple cameras
+
+- **Problem**: Wrong camera is being used
+  - **Solution**: Modify the CAMERA_INDEX value in config/settings.py (0 is usually the built-in webcam, 1 for the first external camera, etc.)
 
 - **Problem**: Poor face detection
   - **Solution**: Improve lighting conditions

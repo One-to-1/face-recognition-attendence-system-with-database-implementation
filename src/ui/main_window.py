@@ -11,8 +11,9 @@ from PyQt5.QtCore import Qt
 from src.ui.register_window import RegisterWindow
 from src.ui.attendance_window import AttendanceWindow
 from src.ui.analytics_window import AnalyticsWindow
+from src.ui.database_window import DatabaseWindow
 from src.ui.style import MAIN_STYLE, TITLE_STYLE, CARD_STYLE, MAIN_BUTTON_STYLE
-from src.ui.icons import get_user_plus_icon, get_camera_icon, get_chart_icon
+from src.ui.icons import get_user_plus_icon, get_camera_icon, get_chart_icon, get_database_icon
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -81,16 +82,26 @@ class MainWindow(QMainWindow):
         self.analytics_btn.setStyleSheet(MAIN_BUTTON_STYLE)
         self.analytics_btn.setMinimumHeight(50)
         
+        # Database management button with icon
+        self.database_btn = QPushButton()
+        self.database_btn.setIcon(get_database_icon())
+        self.database_btn.setIconSize(QPixmap(32, 32).size())
+        self.database_btn.setText("Database Management")
+        self.database_btn.setStyleSheet(MAIN_BUTTON_STYLE)
+        self.database_btn.setMinimumHeight(50)
+        
         # Connect buttons to functions
         self.register_btn.clicked.connect(self.open_register)
         self.attendance_btn.clicked.connect(self.open_attendance)
         self.analytics_btn.clicked.connect(self.open_analytics)
+        self.database_btn.clicked.connect(self.open_database)
         
         # Add buttons to layout with some space around
         button_layout.addItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
         button_layout.addWidget(self.register_btn)
         button_layout.addWidget(self.attendance_btn)
         button_layout.addWidget(self.analytics_btn)
+        button_layout.addWidget(self.database_btn)
         button_layout.addItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
         
         # Add button layout to card
@@ -122,6 +133,10 @@ class MainWindow(QMainWindow):
     def open_analytics(self):
         self.analytics_window = AnalyticsWindow()
         self.analytics_window.show()
+        
+    def open_database(self):
+        self.database_window = DatabaseWindow()
+        self.database_window.show()
         
     def center_window(self):
         """Center the window on the screen"""
