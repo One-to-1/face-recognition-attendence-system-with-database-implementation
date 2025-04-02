@@ -252,12 +252,12 @@ The following class diagram represents the main classes in the system and their 
    │                     │  <────────────────────────────
    │                     │                         │
    │                     │  process_data()         │
-   │                     │ ───────────┐            │
+   │                     │ ──────────┐            │
    │                     │           │            │
    │                     │ <─────────┘            │
-   │                     │                         │
-   │                     │  generate_charts()      │
-   │                     │ ───────────┐            │
+   │                     │                        │
+   │                     │  generate_charts()     │
+   │                     │ ──────────┐            │
    │                     │           │            │
    │                     │ <─────────┘            │
    │                     │                         │
@@ -267,7 +267,7 @@ The following class diagram represents the main classes in the system and their 
    │  Request Export     │                         │
    │─────────────────>   │                         │
    │                     │  export_to_csv()        │
-   │                     │ ───────────┐            │
+   │                     │ ──────────┐            │
    │                     │           │            │
    │                     │ <─────────┘            │
    │                     │                         │
