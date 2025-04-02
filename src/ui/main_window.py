@@ -4,7 +4,7 @@ Main window UI for Face Recognition Attendance System.
 
 from PyQt5.QtWidgets import (QMainWindow, QPushButton, QVBoxLayout, QWidget,
                             QLabel, QHBoxLayout, QSpacerItem, QSizePolicy,
-                            QFrame)
+                            QFrame, QToolButton)
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtCore import Qt
 
@@ -30,9 +30,32 @@ class MainWindow(QMainWindow):
         
         # Header
         header_layout = QHBoxLayout()
+        
+        # Title with spacing
+        header_layout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
         title_label = QLabel("Face Recognition Attendance System")
         title_label.setStyleSheet(TITLE_STYLE)
         header_layout.addWidget(title_label)
+        header_layout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        
+        # Add analytics icon to the top right corner
+        self.analytics_btn = QToolButton()
+        self.analytics_btn.setIcon(get_chart_icon())
+        self.analytics_btn.setIconSize(QPixmap(20, 20).size())
+        self.analytics_btn.setToolTip("View Attendance Reports")
+        self.analytics_btn.clicked.connect(self.open_analytics)
+        self.analytics_btn.setStyleSheet("background: transparent;")
+        header_layout.addWidget(self.analytics_btn)
+        
+        # Add database icon to the top right corner
+        self.database_btn = QToolButton()
+        self.database_btn.setIcon(get_database_icon())
+        self.database_btn.setIconSize(QPixmap(20, 20).size())
+        self.database_btn.setToolTip("Database Management")
+        self.database_btn.clicked.connect(self.open_database)
+        self.database_btn.setStyleSheet("background: transparent;")
+        header_layout.addWidget(self.database_btn)
+        
         main_layout.addLayout(header_layout)
         
         # Horizontal line separator
@@ -74,34 +97,14 @@ class MainWindow(QMainWindow):
         self.attendance_btn.setStyleSheet(MAIN_BUTTON_STYLE)
         self.attendance_btn.setMinimumHeight(50)
         
-        # Analytics button with icon
-        self.analytics_btn = QPushButton()
-        self.analytics_btn.setIcon(get_chart_icon())
-        self.analytics_btn.setIconSize(QPixmap(32, 32).size())
-        self.analytics_btn.setText("View Attendance Reports")
-        self.analytics_btn.setStyleSheet(MAIN_BUTTON_STYLE)
-        self.analytics_btn.setMinimumHeight(50)
-        
-        # Database management button with icon
-        self.database_btn = QPushButton()
-        self.database_btn.setIcon(get_database_icon())
-        self.database_btn.setIconSize(QPixmap(32, 32).size())
-        self.database_btn.setText("Database Management")
-        self.database_btn.setStyleSheet(MAIN_BUTTON_STYLE)
-        self.database_btn.setMinimumHeight(50)
-        
         # Connect buttons to functions
         self.register_btn.clicked.connect(self.open_register)
         self.attendance_btn.clicked.connect(self.open_attendance)
-        self.analytics_btn.clicked.connect(self.open_analytics)
-        self.database_btn.clicked.connect(self.open_database)
         
         # Add buttons to layout with some space around
         button_layout.addItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
         button_layout.addWidget(self.register_btn)
         button_layout.addWidget(self.attendance_btn)
-        button_layout.addWidget(self.analytics_btn)
-        button_layout.addWidget(self.database_btn)
         button_layout.addItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
         
         # Add button layout to card
