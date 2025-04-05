@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QApplication
 import logging
 import codecs
 
-# Fix Windows console encoding issues - can handle Unicode characters including emojis
+# handle Unicode emojis
 if sys.platform == 'win32':
     # Force UTF-8 encoding for stdout/stderr
     sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
